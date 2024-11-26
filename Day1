@@ -1,4 +1,6 @@
-**Write a function to check if a string is a palindrome.**
+----------------------------------------------------------------------------------------------------------------------
+Write a function to check if a string is a palindrome.
+----------------------------------------------------------------------------------------------------------------------
 
 def isPalindrome(s):
     return s == s [: : -1] #this will reverse the string
@@ -12,7 +14,9 @@ if ans:
 else:
     print("No")
 
-**Write a program to calculate the factorial of a number using both a loop and recursion.**
+-----------------------------------------------------------------------------------------------------------------------
+Write a program to calculate the factorial of a number using both a loop and recursion.
+-----------------------------------------------------------------------------------------------------------------------
 
 #using loop method
 def factorial_loop(n):
@@ -37,7 +41,9 @@ else:
     print("Factorial using Loop: ", factorial_loop(num))
     print("Factorial using Recursive: ", factorial_recursive(num))
 
-**Create a basic calculator that supports addition, subtraction, multiplication, and division.**
+-----------------------------------------------------------------------------------------------------------------------
+Create a basic calculator that supports addition, subtraction, multiplication, and division.
+-----------------------------------------------------------------------------------------------------------------------
 
 def calculator(num1, num2 , operation):
     if operation == "add":
