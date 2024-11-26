@@ -1,0 +1,74 @@
+**Write a function to check if a string is a palindrome.**
+
+def isPalindrome(s):
+    return s == s [: : -1] #this will reverse the string
+
+s = input("Enter the word you want to check palindrome: ")
+print("The word entered is: ", s)
+ans = isPalindrome(s)
+
+if ans:
+    print("Yes")
+else:
+    print("No")
+
+**Write a program to calculate the factorial of a number using both a loop and recursion.**
+
+#using loop method
+def factorial_loop(n):
+    result = 1                   #Initialise the result
+    for i in range(1, n+1):     #loop from 1 to 10
+        result *= i             #multiply result by current number
+    return result
+
+#using recursive method
+def factorial_recursive(n):
+    if n == 0:                                  #base case factorial of 0 is 1
+        return 1
+    else:
+        return n * factorial_recursive(n - 1)   #Recursive call
+    
+#Input from user
+num = int(input(("Enter a non-negative integer: ")))
+
+if num < 0:
+    print("Factorial is not defined for negative number.")
+else:
+    print("Factorial using Loop: ", factorial_loop(num))
+    print("Factorial using Recursive: ", factorial_recursive(num))
+
+**Create a basic calculator that supports addition, subtraction, multiplication, and division.**
+
+def calculator(num1, num2 , operation):
+    if operation == "add":
+        return num1 + num2
+    elif operation == "subtract":
+        return num1 - num2
+    elif operation == "multiply":
+        return num1 * num2
+    elif operation == "divide":
+        if num2 == 0:                    #Handle division by 0
+            return "Error! Division by 0 is not possible"
+        return num1 / num2
+    else:
+        return "Invalid operation"
+
+def main():                                #main program
+    print("Welcome to basic calculator.")
+
+    #take user input for numbers.
+    try:
+        num1 = float(input("Enter the first number: "))
+        num2 = float(input("Enter the second number: "))
+    except ValueError:
+        print("Invalid input! Please enter valid numbers.")
+
+    #take user input for operation.
+    operation = input("Enter operation (add, subtract, multiply, divide): ")
+
+    #call the calculator function and display the results.
+    result = calculator(num1, num2, operation)
+    print("Result :", result)
+
+#Run the program
+main()
