@@ -1,0 +1,118 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+1. Count Vowels in a String
+---------------------------------------------------------------------------------------------------------------------------------------------
+Write a program that takes a string as input and counts the number of vowels (a, e, i, o, u).
+
+- Input: A string
+- Output: Total count of vowels in the string.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+def VowelCounter(string):
+    vowels = "aeiou" #define vowels
+    count = 0
+    
+    string = string.lower() #converting the strings to lower case.
+
+    for char in string:
+        if char in vowels:
+            count += 1
+
+    return count
+
+#Input from user:
+input_string = input("Enter a String: ")
+print(f"The user input string is {input_string}")
+
+#Call the function and display the results.
+vowel_count = VowelCounter(input_string)
+print(f"There are {vowel_count} vowels in the provided string.")
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+2. Prime Number Checker
+---------------------------------------------------------------------------------------------------------------------------------------------
+Write a program to check if a given number is prime.
+- Input: A positive integer
+- Output: "Yes, it's a prime number" or "No, it's not a prime number."
+
+Steps to Solve
+- Input: Take an integer from the user.
+- Check conditions:
+- Numbers less than or equal to 1 are not prime.
+- For numbers greater than 1, check divisibility by all integers from 2 to the square root of the number.
+- Output: Print whether the number is prime or not.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range (2, int(number**0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
+
+#taking input from the user.
+num = int(input("Enter an Interger: "))
+print(f"Integer number entered is {num}")
+
+#call the funcion to display results
+if is_prime(num):
+    print(f"The number {num} is Prime Number.")
+else:
+    print(f"The number {num} is Not A Prime Number.")
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+3. Number Guessing Game.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Create a guessing game where the computer randomly picks a number between 1 and 100.
+The user has to guess it, and the program provides hints ("Too High" or "Too Low").
+Limit the number of guesses.
+
+
+Steps to Solve
+Generate a Random Number:
+
+- Use Python's random module to generate a random number within a specified range.
+- User Input:
+- Take input from the user (their guess).
+- Compare and Provide Feedback:
+
+- If the guess is correct, print a congratulatory message.
+- If the guess is too low or too high, inform the user and allow them to try again.
+- Limit the Number of Attempts:
+
+- Optionally, you can limit the number of guesses allowed, making the game more challenging.
+----------------------------------------------------------------------------------------------------------------------------------------------
+import random
+
+def number_guessing_game():
+    number_to_guess = random.randint(1, 100) #Generate a number between 1 to 100
+    attempts = 0
+    max_attempts = 10   #Limiting the maximum number of tries
+
+    print("Welcome! To the number guessing game.")
+    print(f"I'm thinking of a number from 1 to 100. You have {max_attempts} tries left to guess.")
+
+    #loop until the user guesses the number or runs out of the attempts.
+    while attempts < max_attempts:
+        try:
+            guess = int(input(f"Attempts {attempts + 1} / {max_attempts}, Enter your guess: "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        attempts += 1
+
+        #check if the guess is correct, too high, too low, attempts left.
+        if guess < number_to_guess:
+           print("Too Low! Try Again.")
+        elif guess > number_to_guess:
+            print("Too High! Try Again.")
+        else:
+            print(f"Congratulations! You have guessed the correct number {number_to_guess} in {attempts} attempts.")
+        break
+    else:
+        print(f"Sorry you are out of attempts! The correct number was {number_to_guess}")
+
+#Run the game.
+number_guessing_game()
+---------------------------------------------------------------------------------------------------------------------------------------------
