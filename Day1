@@ -74,6 +74,9 @@ def main():                                #main program
 
     #call the calculator function and display the results.
     result = calculator(num1, num2, operation)
+
+    print("Fisrt Number:",num1, operation, "Second Number:", num2)
+    
     print("Result :", result)
 
 #Run the program
