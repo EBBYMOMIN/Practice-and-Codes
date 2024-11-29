@@ -1,0 +1,142 @@
+---------------------------------------------------------------------------------------------------------------------------------------------
+COUNT CONSONANTS.
+
+Q.. Count the number of consonants in a given string.
+
+- Input: A string (can include letters, numbers, or special characters).
+- Output: The number of consonants in the string.
+
+Details:
+- Consonants are all alphabetic characters that are not vowels (a, e, i, o, u).
+- Ignore case and count consonants only (skip numbers, spaces, and special characters).
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+#function to count consonants.vowel_count
+def is_consonant(string):
+    vowels = "aeiou"
+    consonants_count = 0                     #Initialising the count
+
+    string = string.replace(" ", "").lower() #Removes whitespaces and convert the string to lower case.
+
+    #Count Consonants.
+    for letters in string:
+        if letters.isalpha() and letters not in vowels:  #Checking if it is Consonant
+            consonants_count += 1
+
+    return consonants_count
+
+#Taking input from the user
+string_c = input("Enter a string: ")
+
+#Calling the function
+str_consonant = is_consonant(string_c)
+
+#Generating the Output
+print(f"The provided string: {string_c} contains {str_consonant} consonants.")
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+CHECK PERFECT SQUARE.
+- Q.. Write a Python function to determine if a given number is a perfect square. A number is a perfect square if there exists an integer x such that 𝑥2 = number.
+
+Problem Description: Check Perfect Square
+- A perfect square is an integer that can be expressed as the square of another integer. For example:
+
+- 4 is a perfect square because 
+2**2=4
+
+- 9 is a perfect square because 
+3**2=9
+
+- 8 is not a perfect square because there’s no integer x such that 
+𝑥2 = 8
+
+- The task is to create a function that determines whether a given number is a perfect square.
+
+Steps to Solve
+- Input Validation:
+  - Ensure the input is a non-negative integer. Negative numbers cannot be perfect squares, so handle those cases immediately.
+
+- Square Root Check:
+  - Calculate the square root of the number. Use the math.sqrt() function.
+  - Check if the square root is an integer. If it is, the number is a perfect square.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+#importing library
+import math
+
+#Creating a function
+def perfect_square(number):
+    if number < 0:
+        return False
+    
+    #Calculate the square root.
+    sqr_rt = math.sqrt(number)
+
+    #Check if the square root is integer and squaring it gives original number
+    return int(sqr_rt) ** 2 == number
+
+#Taking User Input.
+try:
+    num = int(input("Enter a number to check perfect square: "))
+
+    #Check if the number is a perfect square by calling the function.
+    if perfect_square(num):
+        print(f"{num} is a perfect square.")
+    else:
+        print(f"{num} is not a perfect square.")
+
+except ValueError:
+    print("Invalid Input (accepted value - Integer)")
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+Q..  Implement a function to find all the permutations of a given string.
+
+- Plan:
+ - Base Case: If the string has only one character, return the string itself as the only permutation.
+ - Recursive Case: For a string with more than one character:
+
+- We will fix one character and find the permutations of the remaining string recursively.
+- After finding the permutations of the remaining string, we will insert the fixed character at each possible position.
+
+- Use of Recursion: We'll build the solution recursively by breaking down the string and combining the results.
+
+- Steps:
+   - Take the input string from the user.
+   - Use recursion to generate all the possible permutations.
+   - Return a list of all the unique permutations.
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+#Creating a function
+def is_permute(string):
+    if len(string) == 1:
+        return string
+    
+    #create list to store permutation.
+    permutation = []
+
+    #loop over the string and fix one character.
+    for i in range(len(string)):
+        #for each fixed character, find the permutation of the remaining string.
+        remaining_string = string[:i] + string[i+1:]
+        for permute in is_permute(remaining_string):
+            # Insert the fixed character at every position in the permuted string
+            permutation.append(string[i] + permute)
+
+    return permutation
+
+#Taking input from user.
+input_string = input("Enter the string: ")
+
+#Calling the function
+result = is_permute(input_string)
+
+#Generating Output
+print(f"The permutation of the string is {input_string}")
+
+for permute in result:
+    print(permute)  
+---------------------------------------------------------------------------------------------------------------------------------------------
+You need to find all the possible permutations of a given string. A permutation is a rearrangement of the characters in the string. For example, the permutations of the string "abc" are:
+
+abc, acb, bac, bca, cab, cba
+---------------------------------------------------------------------------------------------------------------------------------------------
