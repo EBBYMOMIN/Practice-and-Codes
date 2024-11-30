@@ -1,0 +1,161 @@
+....................................................................................................................................................
+Problem1: Count the number of words in a given string
+
+- Steps to Solve
+  - Take Input: Ask the user to enter a sentence or string.
+  - Split the String: Use Python’s split() method to break the string into a list of words. This method automatically handles multiple spaces.
+  - Count Words: Use the len() function to count the number of items in the list.
+  - Output Result: Display the total count of words to the user.
+....................................................................................................................................................
+
+#Creating a function
+def count_words(string):
+    words = string.split(" ") #split the string into two words
+    return len(words)
+
+#Taking User input
+sentence = input("Enter a String: ")
+print(f"The provided string is {sentence}")
+
+#Calling the function
+count = count_words(sentence)
+
+#Displaying the results
+print(f"The number of words in {sentence} is {count}")
+....................................................................................................................................................
+
+Problem2: Create a program to check if two strings are rotations of each other.
+
+- Steps to Solve:
+- Understand String Rotations:
+
+- String rotations mean rearranging a string circularly.
+  - For example: "hello" rotated is "ohell", "lohel", etc. For two strings to be rotations of each other, their concatenated version (doubled) must contain the other string.
+
+- Steps for Logic:
+  - Step 1: Check if the two strings have the same length. If not, they cannot be rotations.
+  - Step 2: Concatenate one of the strings with itself. For example:
+  - If string1 is "hello", concatenate it with itself to form "hellohello".
+  - Step 3: Check if the second string exists as a substring of the concatenated string.
+
+- Write the Function:
+  - The function should return True if the two strings are rotations, and False otherwise.
+
+- Edge Cases:
+  - Empty strings: Both should return True as rotations of each other.
+  - Case sensitivity: Handle cases like "Hello" and "hello".
+  - Strings of different lengths: Return False.
+
+....................................................................................................................................................
+
+#Creating a funtion to check if two string are rotation of each other.
+def are_rotation(string1, string2):
+    #check if the strings have same length
+    if len(string1) != len(string2):
+        return False
+    
+    #Concatinating the string
+    concatination = string1 + string1
+
+    #Return string2 as a substring of the concatinated string.
+    return string2 in concatination
+
+#Taking input from the user
+string1 = input("Enter first string: ")
+string2 = input("Enter second string: ")
+
+#Displaying user input
+print(f"The entered string is {string1}")
+print(f"The entered string is {string2}")
+
+#Calling the function
+result = are_rotation(string1, string2)
+
+#Displaying the Outputs
+if result:
+    print(f"{string2} is a rotation of {string1}")
+else:
+    print(f"{string2} is not a rotation of {string1}")
+....................................................................................................................................................
+
+Problem3: Find all combinations of k elements from a given list.
+
+- Problem Breakdown:
+  - Input:
+  - A list of elements, say elements = [1, 2, 3, 4].
+  - An integer k, which defines the size of each combination, e.g., k = 2.
+  - Goal: Generate all unique combinations of k elements from the list.
+
+Steps to Solve:
+
+- Understand Combinations:
+  - A combination is a selection of elements where order does not matter. For instance, for elements = [1, 2, 3] and k = 2, combinations are [(1, 2), (1, 3), (2, 3)].
+
+- Approach:
+  - Using Recursion:
+  - Use recursion to pick elements for each combination and reduce the problem size at each step.
+  - Using Python's itertools.combinations:
+  - This is a built-in function to directly generate combinations.
+  - Algorithm (Recursive Approach):
+
+- Base Case:
+  - If k == 0, return an empty combination ([]).
+  - If the list is empty and k > 0, no combinations are possible.
+
+- Recursive Step:
+  - Include the first element in the combination and recursively generate combinations for the remaining elements with k-1.
+  - Exclude the first element and recursively generate combinations for the remaining elements with k.
+
+- Output:
+  - Return or display all generated combinations.
+....................................................................................................................................................
+
+#USING ITERTOOLS
+
+import itertools
+
+# Input from the user
+elements = input("Enter elements separated by spaces: ").split()
+k = int(input("Enter the value of k (number of elements in each combination): "))
+
+# Generate combinations using itertools
+result_itertools = list(itertools.combinations(elements, k))
+print(f"Combinations using itertools: {result_itertools}")
+
+
+....................................................................................................................................................
+
+#USING RECURSIVE FUNCTION
+
+# Function to find combinations recursively
+def find_combinations_recursive(elements, k):
+    # Base cases
+    if k == 0:
+        return [[]]  # Return a list with an empty combination
+    if len(elements) < k:
+        return []  # Not enough elements to form a combination
+
+    # Recursive step
+    first_element = elements[0]
+    remaining_elements = elements[1:]
+
+    # Include the first element
+    combinations_with_first = [
+        [first_element] + combination
+        for combination in find_combinations_recursive(remaining_elements, k - 1)
+    ]
+
+    # Exclude the first element
+    combinations_without_first = find_combinations_recursive(remaining_elements, k)
+
+    return combinations_with_first + combinations_without_first
+
+# Input from the user
+elements = input("Enter elements separated by spaces: ").split()
+k = int(input("Enter the value of k (number of elements in each combination): "))
+
+# Generate combinations recursively
+result_recursive = find_combinations_recursive(elements, k)
+print(f"Combinations using recursion: {result_recursive}")
+
+....................................................................................................................................................
