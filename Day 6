@@ -1,0 +1,39 @@
+#Password  Strength Checker
+
+import re
+
+def check_password_strength(password):
+    if len(password) < 8:                                                   #Check if password is less than 8 characters
+        return "Weak: Password must be at least 8 characters long"
+    
+    if not any(char.isdigit() for char in password):                        #Check if password contains a digit
+        return "Weak: Password must contain at least one digit"
+    
+    if not any(char.isupper() for char in password):                        #Check if password contains an uppercase letter
+        return "Weak: Password must contain at least one uppercase letter"
+    
+    if not any(char.islower() for char in password):                        #Check if password contains a lowercase letter
+        return "Weak: Password must contain at least one lowercase letter"
+    
+    if not re.search(r'[!@#$%^&*()_+=-]', password):                         #Check if password contains a special character
+        return "Medium: Password must contain at least one special character"
+    
+    return "Strong: Password is strong"
+
+def password_checker():
+    print("Welcome! This is a password strength checker.")
+
+    while True:
+        password = input("Enter a password (or type exit to quit): ")
+        print("Password entered: ", password)
+        
+        if password.lower() == 'exit':
+            print("Goodbye!")
+            break
+
+        result = check_password_strength(password)
+        print(result)
+
+#Run the password checker
+if __name__ == '__main__':
+    password_checker()
